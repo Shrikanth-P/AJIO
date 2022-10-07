@@ -1,0 +1,61 @@
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="2000">
+            <img src="https://assets.ajio.com/cms/AJIO/WEB/WHP-D-topbannercarousel-p2-72hrsdeals-flat70.jpg"
+                class="d-block w-100">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="https://assets.ajio.com/cms/AJIO/WEB/24092022-WHP-D-72hrscarousel-p2-biba-globaldesi-min55.jpg"
+                class="d-block w-100">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="https://assets.ajio.com/cms/AJIO/WEB/25092022-WHP-D-banner1-p3-uspa-min50.jpg"
+                class="d-block w-100">
+        </div>
+    </div>
+    <br><br>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+  
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let prod of products">
+        <div class="col" *ngIf="prod.gender==='WOMEN'">
+            <div class="card h-100">
+                <img [src]="prod.img" class="card-img-top" [alt]="prod.name">
+                <div class="card-body text-center">
+                    <h3 class="card-title" style="color:#ffcc80 ;"><strong>{{prod.pname | uppercase}}</strong></h3>
+                    <div class="card-text">
+                        {{prod.pdescription}}
+                        <br>
+                        <div class="offer-price">
+                            <span class="orginal-price">{{prod.price | currency:'INR'}}&nbsp;<small><del
+                                        class="text-muted">₹{{math.ceil(prod.price/(1-(30/100)))}}.00</del></small>
+                            </span>
+                            <span class="discount" style="color:#ffd597 ;">&nbsp; <small>(30% off)</small></span>
+                        </div>
+                        <div class="pricetag">
+                            <strong> &#9733; Sale Price: {{prod.price | currency:'INR'}}</strong>
+                        </div>
+                        <br>
+                        <button class="btn btn-success m-3" (click)="addToCart(prod)"
+                        style="width:150px;border-radius:10px;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

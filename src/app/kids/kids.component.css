@@ -1,0 +1,12 @@
+.pricetag {
+    justify-content: center;
+    background: #e8f8ff;
+    padding: 2.5px 4px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.pricetag {
+    display: flex;
+    align-items: center;
+}

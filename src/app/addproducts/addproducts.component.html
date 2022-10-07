@@ -1,0 +1,244 @@
+<!--
+    men shirt/t-shirt size->s m l xl xxl
+    pants size->32,34,36,38,40
+
+    kids both->3-4Y,4-5Y,5-6Y,6-7Y,7-8Y
+
+    women ->s m l xl xxl
+-->
+<br>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <h1 type="type" style="color: aliceblue; font-size: 20px;" class="mt-2" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">PRODUCT DETAILS</h1>
+        <div class="d-flex">
+            <a role="button" style="color: whitesmoke; font-size: 16px; margin: 10px;"
+                (click)="clickAddProduct()">ADD</a>
+            <button (click)="clickAddProduct()" type="button" class="btn btn-dark btn-circle btn-x1 btn-sm d-flex"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <img src="../assets/add.png" width="25px" height="25px">
+            </button>
+        </div>
+    </div>
+</nav>
+<table class="table table-hover table-striped table-light">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Type</th>
+            <th scope="col">Size</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of productData">
+            <td>{{product.id}}</td>
+            <td>
+                <img [src]="product.img" class="prodimg">
+            </td>
+            <td>{{product.pname}}</td>
+            <td>{{product.pdescription}}</td>
+            <td>{{product.gender}}</td>
+            <td>{{product.type}}</td>
+            <td>{{product.size}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.quantity}}</td>
+            <td>
+                <button (click)="onEdit(product)" type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    <img src="../assets/edit.png" width="25px" height="25px">
+                </button>&nbsp;
+                <button (click)="deleteProducts(product)" class="btn btn-danger btn-sm">
+                    <img src="../assets/delete.png" width="25px" height="25px"></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Product details</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label class="form-label">Image</label>
+                        <input type="img" class="form-control" formControlName="img" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="pname" class="form-control" formControlName="pname" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <input type="pdescription" class="form-control" formControlName="pdescription" required>
+                    </div>
+
+
+                    <div class="mb-3">Gender</div>
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="flexRadioDefault1"
+                            [(ngModel)]="gendervalue" value="MEN" >
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Men
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="flexRadioDefault2"
+                            [(ngModel)]="gendervalue" value="WOMEN">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            women
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="flexRadioDefault3"
+                            [(ngModel)]="gendervalue" value="KIDS">
+                        <label class="form-check-label" for="flexRadioDefault3">kids</label>
+                    </div>
+
+
+
+                    <container-element [ngSwitch]="gendervalue">
+                        <div class="mb-3">Type</div>
+                        <div *ngSwitchCase="'MEN'">
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" formControlName="type"
+                                    [(ngModel)]="typevalue" id="flexRadio" value="pants">
+                                <label class="form-check-label" for="flexRadio">
+                                    Pants
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" formControlName="type"
+                                    [(ngModel)]="typevalue" id="flexRadio1" value="shirts">
+                                <label class="form-check-label" for="flexRadio1">
+                                    Shirts/T-Shirts
+                                </label>
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'WOMEN'">
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" formControlName="type"
+                                    [(ngModel)]="typevalue" id="flexRadioDefault21" value="VARIABLESIZE">
+                                <label class="form-check-label" for="flexRadioDefault21">
+                                    Kurtas & Ghargas
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" formControlName="type"
+                                    [(ngModel)]="typevalue" id="flexRadioDefault22" value="FIXEDSIZE">
+                                <label class="form-check-label" for="flexRadioDefault22">
+                                    Dress Matterials & Sarees
+                                </label>
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'KIDS'">
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" formControlName="type"
+                                    [(ngModel)]="typevalue" id="flexRadioDefault11" value="BOYS">
+                                <label class="form-check-label" for="flexRadioDefault11">
+                                    Boys Clothes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" formControlName="type"
+                                    [(ngModel)]="typevalue" id="flexRadioDefault12" value="GIRLS">
+                                <label class="form-check-label" for="flexRadioDefault12">
+                                    Girls clothes
+                                </label>
+                            </div>
+                        </div>
+                    </container-element>
+
+
+
+                    <div [ngSwitch]="typevalue" class="d-flex m-2 p-2">
+                        <div class="me-3">Size : </div>
+                        <div *ngSwitchCase="'shirts'">
+                            <select id="size" multiple class="form-select" size="2" formControlName="size">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                        <div *ngSwitchCase="'VARIABLESIZE'">
+                            <select id="size" multiple class="form-select" size="2" formControlName="size">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                        <div *ngSwitchCase="'pants'">
+                            <select id="size" multiple class="form-select" size="2" formControlName="size">
+                                <option value="32">32</option>
+                                <option value="34">34</option>
+                                <option value="36">36</option>
+                                <option value="38">38</option>
+                                <option value="40">40</option>
+                            </select>
+                        </div>
+                        <div *ngSwitchCase="'BOYS'">
+                            <select id="size" multiple class="form-select" size="2" formControlName="size">
+                                <option value="2-4Y">2-4Y</option>
+                                <option value="4-6Y">4-6Y</option>
+                                <option value="6-8Y">6-8Y</option>
+                                <option value="8-10Y">8-10Y</option>
+                                <option value="10-12Y">10-12Y</option>
+                            </select>
+                        </div>
+                        <div *ngSwitchCase="'GIRLS'" >
+                            <select id="size" multiple class="form-select" size="2" formControlName="size">
+                                <option value="2-4Y">2-4Y</option>
+                                <option value="4-6Y">4-6Y</option>
+                                <option value="6-8Y">6-8Y</option>
+                                <option value="8-10Y">8-10Y</option>
+                                <option value="10-12Y">10-12Y</option>
+                            </select>
+                        </div>
+                        <div *ngSwitchCase="'FIXEDSIZE'">
+                            <select id="size" class="form-select" formControlName="size">
+                                <option value="FS" selected>FIXEDSIZE</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" >Price</label>
+                        <input type="price" class="form-control" formControlName="price" min="0" type="Number" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Quantity</label>
+                        <input type="quantity" class="form-control" formControlName="quantity" min="0" type="Number" required>
+                    </div>
+
+                </form>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" *ngIf="showAdd" (click)="postProductDetails()"
+                    class="btn btn-primary">Add</button>
+                <button type="button" *ngIf="showUpdate" (click)="updateProductDetails()"
+                    class="btn btn-warning">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

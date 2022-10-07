@@ -1,0 +1,83 @@
+<div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+    </div>
+</div>
+
+
+<nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark ">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="">
+            <img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" width="70px" height="40px" alt="AJIO"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item mt-2">
+                    <a class="nav-link Active" aria-current="page" routerLink="">Home</a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link" routerLink="men" *ngIf="auth">Men</a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link" routerLink="women" *ngIf="auth">Women</a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link" routerLink="kids" *ngIf="auth">Kids</a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link" routerLink="addproducts" *ngIf = "admin">Add Products</a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link" routerLink="login" *ngIf="!auth">Login</a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link" routerLink="contactus">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                      <app-search></app-search>
+                    </a>
+                </li>
+                
+                <li class="nav-item mt-1" *ngIf="auth">
+                    <a class="nav-link" routerLink="cartitems"><img src="./assets/bag.png" alt="cartitems" width="20px"
+                            height="23px" /><sup class="text-light" style="font-size:10px;margin-left: 3px;;">{{cartCount}}</sup></a>
+                </li>
+
+
+
+                <li class="nav-item dropdown mt-1" *ngIf="auth">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../assets/user.png" alt="user profile" width="20px" height="20px">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end bg-dark"
+                        aria-labelledby="navbarScrollingDropdown">
+                       <!--<li>
+                          <a class="dropdown-item bg-dark "  data-bs-toggle="offcanvas" href="#offcanvasLeft" aria-controls="offcanvasLeft" *ngIf="auth">my profile</a>
+                      </li>-->
+                        <li>
+                            <a class="dropdown-item btn bg-dark" type="submit" routerLink="login" *ngIf="auth">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+  
+ <!-- <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeft">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasLeft">Profile</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+          <img src="../assets/user.png" alt="user profile" width="40px" height="40px">
+          <p>Name : {{user.username}}</p>
+          <p>Email : {{user.useremail}}</p>
+          <p>contact number : {{user.mobile}}</p>
+          <a href="">manage your account</a>
+      </div>
+    </div>-->
+  <br><br><br>

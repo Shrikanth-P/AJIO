@@ -1,0 +1,7 @@
+img{
+    overflow: hidden;
+  
+  }
+  img:hover{
+    transform: scale(1.02);
+  }

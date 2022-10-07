@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ajio-8944f": {
+      "hosting": {
+        "AJIO": [
+          "ajio-8944f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ajio-8944f"
+  }
+}
